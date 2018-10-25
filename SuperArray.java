@@ -78,4 +78,24 @@ public class SuperArray {
     }
     return false;
   }
-}
+  public int indexOf(String target) {
+    int idx = 0;
+    while (idx < size()) {
+      if (data[idx].equals(target)) {
+        return idx;
+      }
+      idx++;
+    }
+    return -1;
+  }
+  public int lastIndexOf(String target) {
+    int idx = size() - 1;
+    while (idx > -1) {
+      if (data[idx].equals(target)) {
+        return idx;
+      }
+      idx--;
+    }
+    return -1;
+  }
+ }
