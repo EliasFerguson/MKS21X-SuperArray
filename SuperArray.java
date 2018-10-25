@@ -102,17 +102,17 @@ public class SuperArray {
     if (size() + 1 >= data.length) {
       resize();
     }
-    String[] newSA = new String[data.length];
-    int idx1 = 0;
-    int idx2 = index + 1;
-    while (idx1 < index) {
-      newSA[idx1] = data[idx1];
-      idx1++;
+    for (int idx = index + 1; idx < size(); idx++) {
+      data[idx] = data[idx - 1];
     }
-    newSA[index] = element;
-    while (idx2 < size()) {
-      newSA[idx2] = data[idx2 - 1];
+    data[index] = element;
+  }
+  public String remove(int index) {
+    String removed = data[index];
+    data[index] = null;
+    for (int idx = index + 1; idx > size(); idx++) {
+      data[idx] = data[idx + 1];
     }
-    data = newSA;
+    return removed;
   }
  }
