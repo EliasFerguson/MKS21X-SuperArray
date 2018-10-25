@@ -29,14 +29,19 @@ public class SuperArray {
   }
   public String toString() {
     String output = "[";
-    for (int idx = 0; idx < data.length - 1; idx ++) {
+    if (size() == 0) {
+      return "[]";
+    }
+    for (int idx = 0; idx < size() - 1; idx ++) {
       output += data[idx] + ", ";
     }
-    if (size() > 0) output += data[size() - 1];
-    output += "]";
+    output += data[size() - 1] + "]";
     return output;
   }
   public String toStringDebug(){
+    if (data.length == 0) {
+      return "[]";
+    }
     String output = "[";
    for (int idx = 0; idx < data.length - 1; idx++) {
      output += data[idx] + ", ";
@@ -63,6 +68,7 @@ public class SuperArray {
     for (int idx = 0; idx < data.length; idx++) {
       newSA[idx] = data[idx];
     }
-    data = newSA[idx];
+    data = newSA;
   }
+
 }
