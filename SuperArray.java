@@ -70,5 +70,12 @@ public class SuperArray {
     }
     data = newSA;
   }
-
+  public boolean contains(String target) {
+    for (int idx = 0; idx < size(); idx++) {
+      if (data[idx].equals(target)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
