@@ -21,10 +21,8 @@ public class SuperArray {
     if (size == data.length) {
       resize();
     }
-    else {
-      data[size] = elem;
-      size++;
-    }
+    data[size] = elem;
+    size++;
     return true;
   }
   public String toString() {
@@ -108,11 +106,24 @@ public class SuperArray {
     data[index] = element;
   }
   public String remove(int index) {
+    if (index < 0 || index >= size()) {
+      return null;
+    }
     String removed = data[index];
     data[index] = null;
     for (int idx = index + 1; idx > size(); idx++) {
       data[idx] = data[idx + 1];
     }
     return removed;
+  }
+  public boolean remove(String element) {
+    for (int idx = 0; idx < size(); idx++) {
+      if (data[idx] != null) {
+        if (data[idx].equals(element)) {
+          this.remove(idx);
+        }
+      }
+    }
+    return true;
   }
  }
