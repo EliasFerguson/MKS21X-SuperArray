@@ -98,4 +98,21 @@ public class SuperArray {
     }
     return -1;
   }
+  public void add(int index, String element) {
+    if (size() + 1 >= data.length) {
+      resize();
+    }
+    String[] newSA = new String[data.length];
+    int idx1 = 0;
+    int idx2 = index + 1;
+    while (idx1 < index) {
+      newSA[idx1] = data[idx1];
+      idx1++;
+    }
+    newSA[index] = element;
+    while (idx2 < size()) {
+      newSA[idx2] = data[idx2 - 1];
+    }
+    data = newSA;
+  }
  }
