@@ -70,8 +70,10 @@ public class SuperArray {
   }
   public boolean contains(String target) {
     for (int idx = 0; idx < size(); idx++) {
-      if (data[idx].equals(target)) {
-        return true;
+      if (data[idx] != null) {
+        if (data[idx].equals(target)) {
+          return true;
+        }
       }
     }
     return false;
@@ -97,8 +99,9 @@ public class SuperArray {
     return -1;
   }
   public void add(int index, String element) {
-    if (size() + 1 >= data.length) {
-      resize();
+    if (index < 0 || index >= size()) {
+      System.out.println("Error - The index is out of range");
+      return;
     }
     for (int idx = index + 1; idx < size(); idx++) {
       data[idx] = data[idx - 1];
