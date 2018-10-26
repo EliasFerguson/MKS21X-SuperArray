@@ -111,7 +111,7 @@ public class SuperArray {
     }
     String removed = data[index];
     data[index] = null;
-    for (int idx = index + 1; idx > size(); idx++) {
+    for (int idx = index; idx < size(); idx++) {
       data[idx] = data[idx + 1];
     }
     return removed;
