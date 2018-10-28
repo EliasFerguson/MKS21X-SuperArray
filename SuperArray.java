@@ -5,6 +5,10 @@ public class SuperArray {
     data = new String[10];
     size = 0;
   }
+  public SuperArray(int startingCapacity) {
+    data = new String[startingCapacity];
+    size = 0;
+  }
   public void clear() {
     size = 0;
   }
