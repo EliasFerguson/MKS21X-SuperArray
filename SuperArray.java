@@ -6,6 +6,9 @@ public class SuperArray {
     size = 0;
   }
   public SuperArray(int startingCapacity) {
+    if (startingCapacity < 0) {
+      throw new IllegalArgumentException();
+    }
     data = new String[startingCapacity];
     size = 0;
   }
@@ -31,13 +34,13 @@ public class SuperArray {
   }
   public String toString() {
     String output = "[";
-    if (size() == 0) {
-      return "[]";
-    }
     for (int idx = 0; idx < size() - 1; idx ++) {
       output += data[idx] + ", ";
     }
-    output += data[size() - 1] + "]";
+    if (size() > 0) {
+      output += data[size() - 1];
+    }
+    output += "]";
     return output;
   }
   public String toStringDebug(){
@@ -66,7 +69,7 @@ public class SuperArray {
     return old;
   }
   private void resize() {
-    String[] newSA = new String[data.length * 2];
+    String[] newSA = new String[(data.length * 2) + 1];
     for (int idx = 0; idx < data.length; idx++) {
       newSA[idx] = data[idx];
     }
@@ -106,6 +109,9 @@ public class SuperArray {
     if (index < 0 || index >= size()) {
       throw new IndexOutOfBoundsException();
     }
+    if (size == data.length - 1) {
+      resize();
+    }
     for (int idx = index + 1; idx < size(); idx++) {
       data[idx] = data[idx - 1];
     }
@@ -123,13 +129,10 @@ public class SuperArray {
     return removed;
   }
   public boolean remove(String element) {
-    for (int idx = 0; idx < size(); idx++) {
-      if (data[idx] != null) {
-        if (data[idx].equals(element)) {
-          this.remove(idx);
-        }
-      }
+    if (this.contains(element)) {
+      this.remove(this.indexOf(element));
+      return true;
     }
-    return true;
+    return false;
   }
  }
